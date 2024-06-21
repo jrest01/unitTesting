@@ -1,12 +1,9 @@
-﻿using Humanizer;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Castle.Core.Logging;
+using Microsoft.Extensions.Logging;
+using Moq;
 
 namespace StringManipulation.Test
+
 {
     public class StringOperationsTest
     {
@@ -83,10 +80,13 @@ namespace StringManipulation.Test
             Assert.False(result);
         }
 
-        [Fact(Skip = "Not Implemented Method")]
+        [Fact]
         public void CountOccurrences()
         {
-            throw new NotImplementedException();
+            var mockLogger = new Mock<ILogger<StringOperations>>();
+            strOperation = new StringOperations(mockLogger.Object);
+            var result = strOperation.CountOccurrences("sssaaa", 'a');
+            Assert.Equal(3, result);
         }
 
         [Theory]
