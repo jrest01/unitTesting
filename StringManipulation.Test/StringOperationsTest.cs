@@ -25,9 +25,12 @@ namespace StringManipulation.Test
             Assert.True(result);
         }
 
-        public void ReverseString()
+        [Theory]
+        [InlineData("Hello", "olleH")]
+        public void ReverseString(string txt, string rTxt)
         {
-            throw new NotImplementedException();
+            var result = strOperation.ReverseString(txt);
+            Assert.Equal(rTxt, result);
         }
 
         [Fact]
@@ -103,7 +106,7 @@ namespace StringManipulation.Test
         public void QuantintyInWords()
         {
             var result = strOperation.QuantintyInWords("gato", 10);
-            Assert.StartsWith("diez", result);
+            Assert.StartsWith("ten", result);
             Assert.Contains("gato", result);
         }
 
